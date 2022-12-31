@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "bulk-edit-pro",
+  "description": "Add new bulk features to certain sites.",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {},
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://five.libsyn.com/*"
+  ]
+}
