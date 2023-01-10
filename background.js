@@ -2,14 +2,30 @@
 'use strict';
 
 function buildUrls() {
-    const trElements = document.querySelectorAll('tr[id]');
+    const removeDuplicates = function removeDuplicates(arr) {
+        let uniqueArray = [];
+        arr.forEach(function (value) {
+            if (uniqueArray.indexOf(value) === -1) {
+                uniqueArray.push(value);
+            }
+        });
+        return uniqueArray;
+    };
+
+    let trElements = document.querySelectorAll('tr[id]');
     let urls = [];
     trElements.forEach(element => {
         let id = element.getAttribute('id');
         let url = `https://five.libsyn.com/episodes/edit/${id}`;
         urls.push(url);
     });
-    return urls;
+    trElements = document.querySelectorAll('a[id^="video-title"]');
+    trElements.forEach(element => {
+        let href = element.getAttribute('href');
+        let url = `https://studio.youtube.com${href}`;
+        urls.push(url);
+    });
+    return removeDuplicates(urls);
 }
 
 chrome.action.onClicked.addListener(async function (tab) {
