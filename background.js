@@ -2,6 +2,7 @@
 'use strict';
 
 function buildUrls() {
+    const newTabLimit = 20;
     const removeDuplicates = function removeDuplicates(arr) {
         let uniqueArray = [];
         arr.forEach(function (value) {
@@ -11,7 +12,16 @@ function buildUrls() {
         });
         return uniqueArray;
     };
-
+    function truncateArray(arr, size) {
+        let truncatedArray = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (i >= size) {
+                break;
+            }
+            truncatedArray.push(arr[i]);
+        }
+        return truncatedArray;
+    }
     let trElements = document.querySelectorAll('tr[id]');
     let urls = [];
     trElements.forEach(element => {
@@ -25,7 +35,7 @@ function buildUrls() {
         let url = `https://studio.youtube.com${href}`;
         urls.push(url);
     });
-    return removeDuplicates(urls);
+    return truncateArray(removeDuplicates(urls), newTabLimit);
 }
 
 chrome.action.onClicked.addListener(async function (tab) {

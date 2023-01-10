@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "0.0.2",
+  "version": "0.0.2.1",
   "name": "bulk-edit-pro",
   "description": "Extended bulk editing functionality for well-known websites. If a website makes bulk editing of information too painful, submit a feature request.",
   "background": {
